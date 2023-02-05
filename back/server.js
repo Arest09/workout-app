@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import authRouter from './app/auth/auth.routes.js'
 import userRouter from './app/user/user.routes.js'
 import exersiceRouter from './app/exersice/exersice.routes.js'
+import workoutRouter from './app/workout/workout.routes.js'
 import { notFound,errorHandler } from './app/middleware/error.middleware.js'
 import path from 'path'
 
@@ -16,6 +17,7 @@ const port = process.env.PORT
 app.listen(port || 4000, () => {
   console.log(`listening on port ${port}`)
 })
+
 
 
 //static files
@@ -32,6 +34,7 @@ async function main() {
   app.use('/api/auth',authRouter)
   app.use('/api/user',userRouter)
   app.use('/api/exersice',exersiceRouter)
+  app.use('/api/workout',workoutRouter)
 }
 
 main()

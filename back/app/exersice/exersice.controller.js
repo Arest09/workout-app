@@ -1,15 +1,23 @@
-import { prisma } from "../prisma.js";
+import {
+  prisma
+} from "../prisma.js";
 
 //POST
 //api/exersice
-//PUBLIC
+//PRIVATE
 export const createNewExersice = async (req, res, next) => {
   try {
-    const { name, times,iconPath } = req.body;
+    const {
+      name,
+      times,
+      iconPath
+    } = req.body;
 
     const exersice = await prisma.exercise.create({
-      data:{
-        name,times,iconPath
+      data: {
+        name,
+        times,
+        iconPath
       }
     })
 
@@ -23,11 +31,15 @@ export const createNewExersice = async (req, res, next) => {
 
 //GET
 //api/exersice
-//PUBLIC
+//PRIVATE
 export const getExersices = async (req, res, next) => {
   try {
 
-   const exersices = await prisma.exercise.findMany()
+    const exersices = await prisma.exercise.findMany({
+      orderBy:{
+        createdAt:'desc'
+      }
+    })
 
     res.json(exersices)
 
@@ -37,5 +49,54 @@ export const getExersices = async (req, res, next) => {
 
   } catch (error) {
     next(error);
+  }
+};
+
+
+//DELETE
+//api/exersice/:id
+//PRIVATE
+export const deleteExersices = async (req, res, next) => {
+  try {
+    let exercise = await prisma.exercise.delete({
+      where: {
+        id: Number(req.params.id)
+      }
+    })
+
+    res.json(exercise)
+
+  } catch (error) {
+    if (error.code = 'P2025') {
+      res.status(404)
+      next({message:'данное упражнение не найдено'})
+    }
+  }
+};
+
+
+//update
+//api/exersice/:id
+//PRIVATE
+export const updateExersices = async (req, res, next) => {
+  try {
+    const {name,times,iconPath} = req.body
+    let exercise = await prisma.exercise.update({
+      where: {
+        id: Number(req.params.id)
+      },
+      data: {
+        name,times,iconPath
+      }
+    })
+    
+
+    res.json(exercise)
+
+  } catch (error) {
+    if (error.code = 'P2025') {
+      res.status(404)
+      next({message:'данное упражнение не найдено'})
+    }
   }
 };

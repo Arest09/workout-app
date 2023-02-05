@@ -2,7 +2,7 @@ import { prisma } from "../prisma.js";
 import { userFields } from "../utils/utils.user.js";
 
 //GET
-//api/users/profile
+//api/user/profile
 //PRIVATE
 
 export const userProfile = async (req, res, next) => {
@@ -19,6 +19,7 @@ export const userProfile = async (req, res, next) => {
     if (!user) {
       throw new Error("пользователь не найден");
     }
+    
 
     res.json(user);
   } catch (error) {
