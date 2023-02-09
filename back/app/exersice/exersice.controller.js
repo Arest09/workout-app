@@ -38,7 +38,11 @@ export const getExersices = async (req, res, next) => {
     const exersices = await prisma.exercise.findMany({
       orderBy:{
         createdAt:'desc'
+      },
+      include:{
+        exerciseLogs:true
       }
+     
     })
 
     res.json(exersices)

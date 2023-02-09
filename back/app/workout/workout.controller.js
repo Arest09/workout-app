@@ -11,11 +11,13 @@ export const createWorkout = async (req, res, next) => {
   try {
     const {name,exerciseId} = req.body
 
+    console.log(exerciseId)
+
     const workout = await prisma.workout.create({
       data:{
         name,
         exercises:{
-          create:exerciseId.map((id)=>{
+          connect:exerciseId.map((id)=>{
             return { id: Number(id) };
           })
         }

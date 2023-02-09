@@ -7,6 +7,8 @@ import { userFields } from "../utils/utils.user.js";
 
 export const userProfile = async (req, res, next) => {
   try {
+
+    console.log(req.user.id)
     const user = await prisma.user.findUnique({
       where: {
         id: req.user.id,
@@ -14,7 +16,7 @@ export const userProfile = async (req, res, next) => {
       select:userFields
     });
 
-    console.log(req.user.id)
+    
 
     if (!user) {
       throw new Error("пользователь не найден");

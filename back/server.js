@@ -33,7 +33,7 @@ app.use(express.text())
 async function main() {
   app.use('/api/auth',authRouter)
   app.use('/api/user',userRouter)
-  app.use('/api/exersice',exersiceRouter)
+  app.use('/api/exercise',exersiceRouter)
   app.use('/api/workout',workoutRouter)
 }
 

@@ -33,6 +33,8 @@ export const auth = async (req, res,next) => {
 
     let token = generateToken(user.id)
 
+   
+
     res.json({user,token});
   } catch (error) {
     next(error);
@@ -68,6 +70,7 @@ export const register = async (req, res, next) => {
     });
 
     let token = generateToken(user.id)
+
 
     res.json({user,token});
   } catch (error) {
