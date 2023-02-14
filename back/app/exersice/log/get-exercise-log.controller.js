@@ -34,11 +34,13 @@ export const getOneExerciseLog = async (req, res, next) => {
         where:{
             exerciseId:exerciseLog.exerciseId,
             isCompleted:true,
-            userId:Number(req.params.id),
+            userId:req.user.id,
         }
        })
 
        const newTimes = addPrevValues(exerciseLog,prevExerciseLog)
+
+       
 
        res.json({...exerciseLog,times:newTimes})
     } catch (error) {

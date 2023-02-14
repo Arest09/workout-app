@@ -1,28 +1,27 @@
-import { prisma } from "../../prisma.js";
+import { prisma } from "../../prisma.js"
 
 //POST
 //api/exercise/log/:exerciseId
 //PRIVATE
 export const createNewExerciseLog = async (req, res, next) => {
   try {
-    const exerciseId = Number(req.params.exerciseId);
+    const exerciseId = Number(req.params.exerciseId)
 
     const exercise = await prisma.exercise.findUnique({
       where: {
         id: exerciseId,
       },
-    });
+    })
 
-    let timeDefault = [];
+    let timeDefault = []
 
     if (!exercise) {
-      throw new Error("нет такого упражнения");
+      throw new Error("нет такого упражнения")
     }
 
     for (let i = 0; i < exercise.times; i++) {
-      timeDefault.push({ weight: 0, repeat: 0 });
+      timeDefault.push({ weight: 0, repeat: 0 })
     }
-
 
     const exersiceLog = await prisma.exerciseLog.create({
       data: {
@@ -37,20 +36,18 @@ export const createNewExerciseLog = async (req, res, next) => {
           },
         },
         times: {
-            createMany: {
-                data: timeDefault
-            }
-        }
+          createMany: {
+            data: timeDefault,
+          },
+        },
       },
-      include:{
-        times:true
-      }
-    });
+      include: {
+        times: true,
+      },
+    })
 
-    res.json(exersiceLog);
+    res.json(exersiceLog)
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
-
-
+}
