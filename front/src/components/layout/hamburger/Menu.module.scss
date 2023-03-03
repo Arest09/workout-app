@@ -1,0 +1,24 @@
+@import "src/assets/styles/var.scss";
+@import "src/assets/styles/animation.scss";
+
+.menu {
+  display: none;
+  position: absolute;
+  left: -75px;
+  width: 116px;
+  background-color: $white;
+  color: black;
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 10px 0px 10px 10px;
+  padding: 14px 12px;
+  animation: appear 0.5s;
+
+  &.show {
+    display: block;
+  }
+
+  .link {
+    padding: 5px 0;
+  }
+}
