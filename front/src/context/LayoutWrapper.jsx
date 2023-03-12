@@ -3,7 +3,7 @@ import { useLayout } from "./LayoutContext"
 
 export function LayoutWrapper({ children, title, height }) {
   const { setTitle, setHeight } = useLayout()
-  
+
   useEffect(() => {
     setTitle(title)
     setHeight(height)

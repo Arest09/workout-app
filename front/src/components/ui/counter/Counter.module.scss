@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.info {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 26px;
+  &.dark {
+    color: #8a7474;
+    font-size: 23px;
+  }
+
+  &:last-child {
+    margin: 0;
+  }
+}

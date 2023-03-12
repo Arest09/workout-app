@@ -10,6 +10,7 @@ import { userFields } from "../utils/utils.user.js";
 //PUBLIC
 export const auth = async (req, res,next) => {
   const {email,password} = req.body;
+  console.log('hello from backend',req.body)
 
   try {
     const user = await prisma.user.findUnique({
@@ -32,7 +33,6 @@ export const auth = async (req, res,next) => {
     }
 
     let token = generateToken(user.id)
-
    
 
     res.json({user,token});

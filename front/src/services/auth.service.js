@@ -8,9 +8,6 @@ class AuthService {
       password: data.password,
     })
 
-    console.log(res)
-    
-
     if (res.data.token) {
       Cookies.set("token", res.data.token)
       console.log(res.data.token)

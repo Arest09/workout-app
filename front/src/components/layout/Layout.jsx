@@ -4,14 +4,9 @@ import style from "./Layout.module.scss"
 import { Outlet } from "react-router-dom"
 import cn from "classnames"
 import { useLayout } from "../../context/LayoutContext"
-import { userContext } from "../../context/FooContext"
 
-
-export function Layout({ bgImage, heading = "" /*  backLink = "/" */ }) {
+export function Layout({ bgImage, heading = "" }) {
   const { title, height } = useLayout()
-  const foo = useContext(userContext)
-
-  console.log(foo)
 
   return (
     <section

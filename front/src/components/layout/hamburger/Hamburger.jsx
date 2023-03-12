@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import style from "./Hamburger.module.scss"
 import burger from "../../../assets/images/header/hamburger.svg"
 import close from "../../../assets/images/header/hamburger-close.svg"
@@ -18,7 +18,7 @@ export function Hamburger() {
           }}
         />
       </button>
-      <Menu show={show} />
+      <Menu {...{show,setShow}} />
     </div>
   )
 }

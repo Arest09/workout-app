@@ -4,28 +4,38 @@ import style from "./Auth.module.scss"
 import cn from "classnames"
 import { Button } from "../../components/ui/button/Button"
 import { Form } from "../../components/ui/form/Form"
-import { userContext } from "../../context/FooContext"
-import { useQuery, useMutation } from "@tanstack/react-query"
+import {useMutation } from "@tanstack/react-query"
 import authService from "../../services/auth.service"
+import { LineWave } from "react-loader-spinner"
+import { useAuthContext } from "../../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 export function Auth() {
   const [mail, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [type, setType] = useState("login")
-  const foo = useContext(userContext)
 
-  const { mutate, isLoading } = useMutation(
-    (data) => {
-      return authService.main(data)
-    },
+  const { setIsAuth } = useAuthContext()
+
+  const navigate = useNavigate()
+
+  const {mutate,isLoading,isError,error,data: authData,} = useMutation((data) => { 
+    return authService.main(data)
+  },
     {
       onSuccess: () => {
-        alert("sended")
-        setEmail('')
-        setPassword('')
+        setEmail("")
+        setPassword("")
+        setIsAuth(true)
+
+        setTimeout(() => {
+          navigate("/")
+        }, 2000)
       },
     }
   )
+
+  const errorInfo = error?.response?.data?.message
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -36,6 +46,7 @@ export function Auth() {
   const styleBtn = {
     display: "block",
     marginTop: "15px ",
+    flexShrink: "0",
   }
 
   return (
@@ -76,7 +87,13 @@ export function Auth() {
               type='login'>
               sign in
             </Button>
-            {isLoading ? "loading" : ""}
+            <span
+              className={cn("", {
+                [style.error]: isError,
+                [style.success]: authData,
+              })}>
+              {isLoading ? <LineWave height='50' visible={true} /> : isError ? errorInfo : authData?.data?.user?.name}
+            </span>
             <Button
               onClick={() => {
                 setType("register")

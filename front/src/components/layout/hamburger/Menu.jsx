@@ -3,9 +3,16 @@ import { menu } from "./menu.data"
 import style from "./Menu.module.scss"
 import cn from "classnames"
 import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
+import { useAuthContext } from "../../../context/AuthContext"
 
-export function Menu({ show, asd }) {
-  const logoutHandler = () => {}
+export function Menu({ show, setShow }) {
+  const { setIsAuth } = useAuthContext()
+  const logoutHandler = () => {
+    setIsAuth(false)
+    Cookies.remove("token")
+    setShow(false)
+  }
 
   return (
     <nav

@@ -7,7 +7,6 @@ import { NotFound } from "./pages/notFound/NotFound"
 import { Profile } from "./pages/profile/Profile"
 import { RequireAuth } from "./hoc/RequireAuth"
 import { LayoutWrapper } from "./context/LayoutWrapper"
-import { userContext } from "./context/FooContext"
 
 export function App() {
   return (
@@ -17,26 +16,25 @@ export function App() {
           index
           element={
             <LayoutWrapper title={"home"} height={"60%"}>
-              <Home />
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
             </LayoutWrapper>
           }
         />
         <Route
           path='auth'
           element={
-            <userContext.Provider value={"asd"}>
-              <LayoutWrapper height={"55%"}>
-                <Auth />
-              </LayoutWrapper>
-            </userContext.Provider>
+            <LayoutWrapper height={"55%"}>
+              <Auth />
+            </LayoutWrapper>
           }
         />
-
         <Route
           path='new-workout'
           element={
             <RequireAuth>
-              <LayoutWrapper height={"30%"}>
+              <LayoutWrapper height={"55%"} title={'create new exercise'}>
                 <NewWorkout />
               </LayoutWrapper>
             </RequireAuth>
@@ -46,7 +44,9 @@ export function App() {
           path='profile'
           element={
             <RequireAuth>
-              <Profile />
+              <LayoutWrapper height={"50%"}>
+                <Profile />
+              </LayoutWrapper>
             </RequireAuth>
           }
         />

@@ -1,5 +1,11 @@
 import React from "react"
-
+import { useLayout } from "../../context/LayoutContext"
 export function NewWorkout() {
-  return <div>NewWorkout</div>
+  const { title } = useLayout()
+
+  return (
+    <div>
+      <h1 className="title">{title}</h1>
+    </div>
+  )
 }
