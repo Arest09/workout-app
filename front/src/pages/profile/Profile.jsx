@@ -1,14 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import userService from "../../services/user.service"
 import style from './Profile.module.scss'
 import { LineWave } from "react-loader-spinner"
 import { Counter } from "../../components/ui/counter/Counter"
+import { useQueryClient } from "@tanstack/react-query"
+import Cookies from "js-cookie"
 
 export function Profile() {
-  const profile = useQuery(["pofile", "get"], userService.getProfile, {
+  
+
+
+  const profile = useQuery(["pofile",Cookies.get('token')], userService.getProfile, {
     onSuccess: (profile) => {
-      
+     
     },
     select: (profile) => {
       return profile.data

@@ -41,6 +41,16 @@ export function App() {
           }
         />
         <Route
+          path='workouts'
+          element={
+            <RequireAuth>
+              <LayoutWrapper height={"55%"} title={'workouts'}>
+                <NewWorkout />
+              </LayoutWrapper>
+            </RequireAuth>
+          }
+        />
+        <Route
           path='profile'
           element={
             <RequireAuth>

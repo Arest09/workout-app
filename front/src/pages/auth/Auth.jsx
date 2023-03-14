@@ -27,10 +27,9 @@ export function Auth() {
         setEmail("")
         setPassword("")
         setIsAuth(true)
-
-        setTimeout(() => {
-          navigate("/")
-        }, 2000)
+        
+        navigate("/")
+    
       },
     }
   )
