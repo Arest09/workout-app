@@ -8,7 +8,6 @@ import { useQueryClient } from "@tanstack/react-query"
 import Cookies from "js-cookie"
 
 export function Profile() {
-  
 
 
   const profile = useQuery(["pofile",Cookies.get('token')], userService.getProfile, {

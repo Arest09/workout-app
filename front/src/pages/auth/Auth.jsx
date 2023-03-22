@@ -36,6 +36,8 @@ export function Auth() {
 
   const errorInfo = error?.response?.data?.message
 
+  console.log(error)
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -86,13 +88,6 @@ export function Auth() {
               type='login'>
               sign in
             </Button>
-            <span
-              className={cn("", {
-                [style.error]: isError,
-                [style.success]: authData,
-              })}>
-              {isLoading ? <LineWave height='50' visible={true} /> : isError ? errorInfo : authData?.data?.user?.name}
-            </span>
             <Button
               onClick={() => {
                 setType("register")
@@ -101,6 +96,13 @@ export function Auth() {
               type='register'>
               sign up
             </Button>
+            <span
+              className={cn("", {
+                'error': isError,
+                'success': authData,
+              })}>
+              {isLoading ? <LineWave height='50' visible={true} /> : isError ? errorInfo : authData?.data?.user?.name}
+            </span>
           </div>
         </Form>
       </div>

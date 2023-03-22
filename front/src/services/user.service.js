@@ -7,7 +7,6 @@ class UserService {
         "Content-Type": "application/json",
       },
     })
-    console.log('shoot from user')
     return res
   }
 }

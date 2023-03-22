@@ -7,6 +7,7 @@ import { NotFound } from "./pages/notFound/NotFound"
 import { Profile } from "./pages/profile/Profile"
 import { RequireAuth } from "./hoc/RequireAuth"
 import { LayoutWrapper } from "./context/LayoutWrapper"
+import { NewExericse } from "./pages/new-exercise/NewExericse"
 
 export function App() {
   return (
@@ -34,17 +35,28 @@ export function App() {
           path='new-workout'
           element={
             <RequireAuth>
-              <LayoutWrapper height={"55%"} title={'create new exercise'}>
+              <LayoutWrapper height={"55%"} title={"create new workout"}>
                 <NewWorkout />
               </LayoutWrapper>
             </RequireAuth>
           }
         />
         <Route
+          path='new-exercise'
+          element={
+            <RequireAuth>
+              <LayoutWrapper height={"55%"} title={"create new workout"}>
+                <NewExericse />
+              </LayoutWrapper>
+            </RequireAuth>
+          }
+        />
+
+        <Route
           path='workouts'
           element={
             <RequireAuth>
-              <LayoutWrapper height={"55%"} title={'workouts'}>
+              <LayoutWrapper height={"55%"} title={"workouts"}>
                 <NewWorkout />
               </LayoutWrapper>
             </RequireAuth>

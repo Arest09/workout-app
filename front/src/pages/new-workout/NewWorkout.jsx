@@ -1,11 +1,16 @@
 import React from "react"
+import { Button } from "../../components/ui/button/Button"
+import { Input } from "../../components/ui/input/Input"
 import { useLayout } from "../../context/LayoutContext"
+import style from "./NewWorkout.module.scss"
+
 export function NewWorkout() {
-  const { title } = useLayout()
+
+  
 
   return (
-    <div>
-      <h1 className="title">{title}</h1>
-    </div>
+    <>
+     <div className="">workout</div>
+    </>
   )
 }

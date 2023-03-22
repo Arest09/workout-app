@@ -11,8 +11,6 @@ class AuthService {
     if (res.data.token) {
       Cookies.set("token", res.data.token)
     }
-    console.log('shoot from auth')
-    return res
   }
 }
 

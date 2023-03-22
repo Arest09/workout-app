@@ -2,7 +2,7 @@ import axios from "axios"
 import Cookies from "js-cookie"
 
 export const instance = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL: `${import.meta.env.VITE_SERVER}/api/`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,11 +11,9 @@ export const instance = axios.create({
 instance.interceptors.request.use((config) => {
   if (Cookies.get("token")) {
     config.headers.Authorization = `Bearer ${Cookies.get("token")}`
-  }
-  else{
+  } else {
     config.headers.Authorization = `none`
   }
 
-  console.log('start',config)
   return config
 })

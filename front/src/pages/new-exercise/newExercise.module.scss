@@ -1,0 +1,44 @@
+@keyframes appear {
+  0% {
+    background-color: none;
+  }
+  100% {
+    background-color: rgb(121, 121, 181);
+  }
+}
+
+.form {
+  max-width: 319px;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  li {
+    position: relative;
+  }
+}
+
+.checkbox {
+  &:checked + li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    animation: appear 1s forwards;
+  }
+}
+
+.image {
+  padding: 0 0 5px;
+}
+
+.message{
+    text-align: center;
+    display: block;
+}

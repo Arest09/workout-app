@@ -14,7 +14,7 @@ export function Home() {
   return (
     <div className={style.home}>
       <h1 className={style.title}>Exercise</h1>
-      <Button style={{margin:'30px 0 30px'}}>
+      <Button style={{margin:'30px auto 30px'}}>
         <Link to='new-workout'>New</Link>
       </Button>
       <Counter/>

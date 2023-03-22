@@ -4,4 +4,9 @@
     border-radius: 5px;
     padding: 10px 7px;
     width: 100%;
+    outline: none;
+
+    &::placeholder{
+        color:#946E86;
+    }
 }

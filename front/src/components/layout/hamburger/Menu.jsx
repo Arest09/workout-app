@@ -22,7 +22,7 @@ export function Menu({ show, setShow }) {
       <ul>
         {menu.map((item, index) => {
           return (
-            <li className={style.link} key={index}>
+            <li className={style.link} key={index} onClick={()=>{setShow(false)}} >
               <Link to={item.link}>{item.title}</Link>
             </li>
           )

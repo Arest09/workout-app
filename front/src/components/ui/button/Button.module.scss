@@ -8,8 +8,17 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   color: $white;
+  display: block;
+  width: 100%;
+  max-width: 146px;
 }
 
 .login{
   background-color: #511734;
+}
+
+
+.disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
 }

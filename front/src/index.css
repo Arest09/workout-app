@@ -1,3 +1,5 @@
+@import '../../front/src/assets/styles/animation.scss';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -9,6 +11,15 @@
   -webkit-text-size-adjust: 100%;
   
 }
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 
 #root{
   height: 100vh;
@@ -16,6 +27,28 @@
 
 .title{
   text-align: center;
+}
+
+input{
+  display: block;
+}
+
+input[type='radio']{
+  position: absolute;
+  width: 0;
+  height:0;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.expire{
+  animation:0.5s forwards appear;
 }
 
 
