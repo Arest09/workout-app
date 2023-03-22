@@ -1,13 +1,10 @@
 import React, { useState } from "react"
 import { Button } from "../../components/ui/button/Button"
 import { Input } from "../../components/ui/input/Input"
-import { useLayout } from "../../context/LayoutContext"
-import { useMutation } from "@tanstack/react-query"
-import exerciseService from "../../services/exercise.service"
 import { iconPath } from "./icon.path.utils"
 import style from "./newExercise.module.scss"
-import Expire from "./Expire.utils"
 import cls from "classnames"
+import { useNewExercise } from "./useNewExercise"
 
 const inputStyle = {
   marginBottom: "20px",
@@ -23,32 +20,7 @@ const styleBtn = {
 const icons = ["chest.svg", "shoulders.svg", "biceps.svg", "legs.svg", "hit.svg", "back.svg"]
 
 export function NewExericse() {
-  const { title } = useLayout()
-  const [name, setName] = useState("")
-  const [times, setTimes] = useState("")
-  const [image, setImage] = useState("")
-  const [key, setKey] = useState(0)
-
-  const { mutate, isLoading, isError, error, isSuccess, data } = useMutation(
-    (data) => {
-      return exerciseService.createExercise(data)
-    },
-    {
-      onSuccess: (data) => {
-        setName("")
-        setTimes("")
-        console.log("cool")
-      },
-      onError: (error) => {
-        console.log(error, "bad")
-      },
-    }
-  )
-
-  const hadnleSubmit = (e) => {
-    e.preventDefault()
-    mutate({ name, times, image })
-  }
+  const { isLoading, isError, error, isSuccess, name, setName, times, setTimes, setImage, hadnleSubmit, title } = useNewExercise()
 
   const errorInfo = error?.response?.data?.message
 
