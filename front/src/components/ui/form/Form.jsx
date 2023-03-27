@@ -1,5 +1,4 @@
-import React from "react"
-import style from "./Form.module.scss"
+import style from './Form.module.scss'
 
 export function Form({ children, ...props }) {
   return (

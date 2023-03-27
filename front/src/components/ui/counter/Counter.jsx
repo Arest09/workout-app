@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from "react"
-import { useQuery } from "@tanstack/react-query"
-import userService from "../../../services/user.service"
-import { LineWave } from "react-loader-spinner"
-import style from "./Counter.module.scss"
-import cn from "classnames"
-import Cookies from "js-cookie"
+import { useQuery } from '@tanstack/react-query'
+import cn from 'classnames'
+import Cookies from 'js-cookie'
+import React, { useEffect, useState } from 'react'
+import { LineWave } from 'react-loader-spinner'
 
+import userService from '../../../services/user.service'
+
+import style from './Counter.module.scss'
 
 export function Counter() {
-
-  
-
-  const counter = useQuery(["pofile",`${Cookies.get('token')}`], userService.getProfile, {
-    onSuccess: (data) => {
-     
-    },
-    select: (profile) => {
+  const counter = useQuery(['pofile', `${Cookies.get('token')}`], userService.getProfile, {
+    select: profile => {
       return profile.data.statistics
     },
-    keepPreviousData:false
+    keepPreviousData: false
   })
 
   if (counter.isLoading) {
@@ -31,7 +26,7 @@ export function Counter() {
 
   return (
     <ul className={style.wrapper}>
-      {counter.data.map((item) => {
+      {counter.data.map(item => {
         return (
           <li className={style.list} key={item.label}>
             <span className={cn(style.info, style.dark)}>{item.label}</span>

@@ -1,0 +1,7 @@
+@import 'src/assets/styles/animation.scss';
+
+.message {
+  text-align: center;
+  display: block;
+  animation: appear 0.5s forwards;
+}

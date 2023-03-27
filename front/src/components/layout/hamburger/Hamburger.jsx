@@ -1,9 +1,10 @@
-import React from "react"
-import style from "./Hamburger.module.scss"
-import burger from "../../../assets/images/header/hamburger.svg"
-import close from "../../../assets/images/header/hamburger-close.svg"
-import { Menu } from "./Menu"
-import { useClickOutside } from "../../../hooks/useClickOutside"
+import { useClickOutside } from '../../../hooks/useClickOutside'
+
+import close from '../../../assets/images/header/hamburger-close.svg'
+import burger from '../../../assets/images/header/hamburger.svg'
+
+import style from './Hamburger.module.scss'
+import { Menu } from './Menu'
 
 export function Hamburger() {
   const [ref, show, setShow] = useClickOutside(false)
@@ -18,7 +19,7 @@ export function Hamburger() {
           }}
         />
       </button>
-      <Menu {...{show,setShow}} />
+      <Menu {...{ show, setShow }} />
     </div>
   )
 }

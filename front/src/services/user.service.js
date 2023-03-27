@@ -1,11 +1,11 @@
-import { instance } from "../api"
+import { instance } from '../api'
 
 class UserService {
   async getProfile() {
     const res = await instance.get(`/user/profile`, {
       headers: {
-        "Content-Type": "application/json",
-      },
+        'Content-Type': 'application/json'
+      }
     })
     return res
   }

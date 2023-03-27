@@ -1,36 +1,48 @@
-import React, { useContext, useState } from "react"
-import { Input } from "../../components/ui/input/Input"
-import style from "./Auth.module.scss"
-import cn from "classnames"
-import { Button } from "../../components/ui/button/Button"
-import { Form } from "../../components/ui/form/Form"
-import {useMutation } from "@tanstack/react-query"
-import authService from "../../services/auth.service"
-import { LineWave } from "react-loader-spinner"
-import { useAuthContext } from "../../context/AuthContext"
-import { useNavigate } from "react-router-dom"
+import { useMutation } from '@tanstack/react-query'
+import cn from 'classnames'
+import { useState } from 'react'
+import { LineWave } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
+
+import { Button } from '../../components/ui/button/Button'
+import { Form } from '../../components/ui/form/Form'
+import { Input } from '../../components/ui/input/Input'
+import { Alert } from '../../components/ui/message/Alert'
+
+import authService from '../../services/auth.service'
+
+import { useAuthContext } from '../../context/AuthContext'
+
+import style from './Auth.module.scss'
 
 export function Auth() {
-  const [mail, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [type, setType] = useState("login")
+  const [mail, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [type, setType] = useState('login')
 
   const { setIsAuth } = useAuthContext()
 
   const navigate = useNavigate()
 
-  const {mutate,isLoading,isError,error,data: authData,} = useMutation((data) => { 
-    return authService.main(data)
-  },
+  const {
+    mutate,
+    isLoading,
+    isError,
+    error,
+    data: authData,
+    isSuccess
+  } = useMutation(
+    data => {
+      return authService.main(data)
+    },
     {
       onSuccess: () => {
-        setEmail("")
-        setPassword("")
+        setEmail('')
+        setPassword('')
         setIsAuth(true)
-        
-        navigate("/")
-    
-      },
+
+        navigate('/')
+      }
     }
   )
 
@@ -38,32 +50,32 @@ export function Auth() {
 
   console.log(error)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault()
 
     mutate({ mail, password, type })
   }
 
   const styleBtn = {
-    display: "block",
-    marginTop: "15px ",
-    flexShrink: "0",
+    display: 'block',
+    marginTop: '15px ',
+    flexShrink: '0'
   }
 
   return (
     <>
       <div className='wrapper'>
-        <h1 className={cn(style.title, "title")}>sign in</h1>
+        <h1 className={cn(style.title, 'title')}>sign in</h1>
         <Form onSubmit={handleSubmit}>
           <label>
             <Input
-              style={{ marginBottom: "12px" }}
+              style={{ marginBottom: '12px' }}
               placeholder='enter email'
               type='email'
               name='email'
               required
               value={mail}
-              onChange={(e) => {
+              onChange={e => {
                 setEmail(e.target.value)
               }}
             />
@@ -74,7 +86,7 @@ export function Auth() {
               name='password'
               placeholder='enter password'
               value={password}
-              onChange={(e) => {
+              onChange={e => {
                 setPassword(e.target.value)
               }}
             />
@@ -82,7 +94,7 @@ export function Auth() {
           <div className={style.btnWrapper}>
             <Button
               onClick={() => {
-                setType("login")
+                setType('login')
               }}
               style={styleBtn}
               type='login'>
@@ -90,19 +102,15 @@ export function Auth() {
             </Button>
             <Button
               onClick={() => {
-                setType("register")
+                setType('register')
               }}
               style={styleBtn}
               type='register'>
               sign up
             </Button>
-            <span
-              className={cn("", {
-                'error': isError,
-                'success': authData,
-              })}>
-              {isLoading ? <LineWave height='50' visible={true} /> : isError ? errorInfo : authData?.data?.user?.name}
-            </span>
+            {isLoading && <LineWave height='50' visible={true} />}
+            {isError && <Alert type='error'>{errorInfo}</Alert>}
+            {isSuccess && <Alert>{authData?.data?.user?.name}</Alert>}
           </div>
         </Form>
       </div>

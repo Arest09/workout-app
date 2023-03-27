@@ -1,0 +1,90 @@
+@import 'src/assets/styles/animation.scss';
+@import 'src/assets/styles/var';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#root {
+  height: 100vh;
+}
+
+.title {
+  text-align: center;
+}
+
+input {
+  display: block;
+}
+
+input[type='radio'] {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.expire {
+  animation: 0.5s forwards appear;
+}
+
+.select {
+  &__control {
+    margin-bottom: 20px;
+    background-color: $dark-purple !important;
+    border: none !important;
+  }
+  &__input {
+    color: $white !important;
+  }
+
+  &__menu {
+    background-color: $purple !important;
+    border-radius: 15px;
+  }
+  &__option--is-focused {
+    background-color: #300d25 !important;
+  }
+
+  &__multi-value {
+    background-color: #484499 !important;
+  }
+
+  svg {
+    border-radius: 3px;
+    fill: #000 !important;
+  }
+  &__multi-value__label {
+    color: white !important;
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+}
+.select__control.select__control--is-focused {
+  box-shadow: none;
+}

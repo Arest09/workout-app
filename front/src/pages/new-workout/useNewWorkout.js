@@ -1,24 +1,31 @@
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 
-import exerciseService from '../../services/exercise.service'
+import workoutService from '../../services/workout.service'
 
 import { useLayout } from '../../context/LayoutContext'
 
-export function useNewExercise() {
+import { useListExercises } from './useListExercises'
+
+export function useNewWorkout() {
   const { title } = useLayout()
   const [name, setName] = useState('')
-  const [times, setTimes] = useState('')
-  const [image, setImage] = useState('')
+  let [userChoice, setUserChoice] = useState([])
+
+  const { exercises = [] } = useListExercises()
+
+  let options = exercises.map(item => {
+    return { value: item.id, label: item.name }
+  })
 
   const { mutate, isLoading, isError, error, isSuccess, data } = useMutation(
     data => {
-      return exerciseService.createExercise(data)
+      return workoutService.createworkout(data)
     },
     {
       onSuccess: () => {
         setName('')
-        setTimes('')
+        setUserChoice([])
       },
       onError: error => {
         console.log(error, 'bad')
@@ -28,7 +35,10 @@ export function useNewExercise() {
 
   const hadnleSubmit = e => {
     e.preventDefault()
-    mutate({ name, times, image })
+    mutate({
+      name,
+      exerciseId: userChoice.map(item => item.value)
+    })
   }
 
   return {
@@ -40,11 +50,10 @@ export function useNewExercise() {
     data,
     name,
     setName,
-    times,
-    setTimes,
-    image,
-    setImage,
     hadnleSubmit,
-    title
+    title,
+    userChoice,
+    setUserChoice,
+    options
   }
 }

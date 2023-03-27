@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useState } from 'react'
 
 const LayoutContext = createContext(null)
 
@@ -7,10 +7,11 @@ export const useLayout = () => {
 }
 
 export function LayoutProvider({ children }) {
-  const [title, setTitle] = useState("")
-  const [height, setHeight] = useState("")
+  const [title, setTitle] = useState('')
+  const [height, setHeight] = useState('')
+  const [bgImage, setBgImage] = useState('')
   return (
-    <LayoutContext.Provider value={{ title, setTitle, height, setHeight }}>
+    <LayoutContext.Provider value={{ title, setTitle, height, setHeight, bgImage, setBgImage }}>
       {children}
     </LayoutContext.Provider>
   )
