@@ -1,4 +1,4 @@
-import { prisma } from "../../prisma.js"
+import { prisma } from '../../prisma.js'
 
 //update when train in completed
 //PATCH
@@ -9,19 +9,19 @@ export const updateCompleteWorkoutLog = async (req, res, next) => {
   try {
     const workoutLog = await prisma.workoutLog.update({
       where: {
-        id: Number(req.params.id),
+        id: Number(req.params.id)
       },
       data: {
-        isCompleted: true,
-      },
+        isCompleted: true
+      }
     })
 
     if (!workoutLog) {
       res.status(404)
-      throw new Error("нет такого workoutlog")
+      throw new Error('нет такого workoutlog')
     }
 
-    res.json({workoutLog})
+    res.json({ workoutLog })
   } catch (error) {
     next(error)
   }

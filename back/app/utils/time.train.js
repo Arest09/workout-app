@@ -1,3 +1,3 @@
-export const CalcMinutes = (length) => {
-    return length * 2.5;
+export const CalcMinutes = length => {
+  return length * 2.5
 }

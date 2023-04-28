@@ -1,4 +1,4 @@
-import { prisma } from "../../prisma.js"
+import { prisma } from '../../prisma.js'
 
 //desc making workout log
 //POST
@@ -14,60 +14,60 @@ export const createNewworkoutLog = async (req, res, next) => {
       },
 
       include: {
-        exercises: true,
-      },
+        exercises: true
+      }
     })
 
     if (!workout) {
       res.status(404)
-      throw new Error("Workout not found!")
+      throw new Error('Workout not found!')
     }
 
     const workoutLog = await prisma.workoutLog.create({
       data: {
         user: {
           connect: {
-            id: req.user.id,
-          },
+            id: req.user.id
+          }
         },
         workout: {
           connect: {
-            id: workoutId,
-          },
+            id: workoutId
+          }
         },
         exerciseLogs: {
-          create: workout.exercises.map((exercise) => {
+          create: workout.exercises.map(exercise => {
             return {
               user: {
                 connect: {
-                  id: req.user.id,
-                },
+                  id: req.user.id
+                }
               },
               exercise: {
                 connect: {
-                  id: exercise.id,
-                },
+                  id: exercise.id
+                }
               },
               times: {
                 create: Array.from({ length: exercise.times }, () => {
                   return {
                     weight: 0,
-                    repeat: 0,
+                    repeat: 0
                   }
-                }),
-              },
+                })
+              }
             }
-          }),
-        },
+          })
+        }
       },
       include: {
         exerciseLogs: {
           include: {
             times: true,
-            exercise: true,
-          },
-        },
-      },
+            exercise: true
+          }
+        }
+      }
     })
 
     res.json(workoutLog)
@@ -76,5 +76,3 @@ export const createNewworkoutLog = async (req, res, next) => {
     next(error)
   }
 }
-
-

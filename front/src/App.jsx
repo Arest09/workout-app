@@ -30,7 +30,7 @@ export function App() {
         <Route
           path='auth'
           element={
-            <LayoutWrapper height={'55%'}>
+            <LayoutWrapper height={'55%'} title={'sign in'}>
               <Auth />
             </LayoutWrapper>
           }
@@ -49,7 +49,7 @@ export function App() {
           path='new-exercise'
           element={
             <RequireAuth>
-              <LayoutWrapper height={'55%'} title={'create new workout'}>
+              <LayoutWrapper height={'77%'} title={'create new exercise'}>
                 <NewExericse />
               </LayoutWrapper>
             </RequireAuth>

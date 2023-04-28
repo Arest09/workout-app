@@ -27,6 +27,12 @@
 
 .title {
   text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  &.left{
+    width: 100%;
+  }
 }
 
 input {

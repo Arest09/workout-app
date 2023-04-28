@@ -1,46 +1,50 @@
-import express from "express"
-import * as dotenv from "dotenv"
-dotenv.config()
-import { prisma } from "./app/prisma.js"
-import morgan from "morgan"
 import cors from 'cors'
-import authRouter from "./app/auth/auth.routes.js"
-import userRouter from "./app/user/user.routes.js"
-import exersiceRouter from "./app/exersice/exersice.routes.js"
-import workoutRouter from "./app/workout/workout.routes.js"
-import { notFound, errorHandler } from "./app/middleware/error.middleware.js"
-import path from "path"
+import * as dotenv from 'dotenv'
+import express from 'express'
+import morgan from 'morgan'
+import path from 'path'
+
+import authRouter from './app/auth/auth.routes.js'
+import exersiceRouter from './app/exersice/exersice.routes.js'
+import userRouter from './app/user/user.routes.js'
+import workoutRouter from './app/workout/workout.routes.js'
+
+import { errorHandler, notFound } from './app/middleware/error.middleware.js'
+
+import { prisma } from './app/prisma.js'
+
+dotenv.config()
 
 const app = express()
 
-app.use(cors())
+app.use(cors({ origin: 'http://localhost:5173' }))
 
 const port = process.env.PORT
-app.listen(port || 4000, () => {
+app.listen(port || 5000, () => {
   console.log(`listening on port ${port}`)
 })
 
 //static files
 const __dirname = path.resolve()
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
-app.use(morgan("dev"))
+app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.text())
 
 async function main() {
-  app.use("/api/auth", authRouter)
-  app.use("/api/user", userRouter)
-  app.use("/api/exercise", exersiceRouter)
-  app.use("/api/workout", workoutRouter)
+  app.use('/api/auth', authRouter)
+  app.use('/api/user', userRouter)
+  app.use('/api/exercise', exersiceRouter)
+  app.use('/api/workout', workoutRouter)
 }
 
 main()
   .then(async () => {
     await prisma.$disconnect()
   })
-  .catch(async (e) => {
+  .catch(async e => {
     console.error(e)
     await prisma.$disconnect()
     process.exit(1)

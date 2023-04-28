@@ -65,7 +65,6 @@ export function Auth() {
   return (
     <>
       <div className='wrapper'>
-        <h1 className={cn(style.title, 'title')}>sign in</h1>
         <Form onSubmit={handleSubmit}>
           <label>
             <Input

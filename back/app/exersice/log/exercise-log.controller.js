@@ -1,4 +1,4 @@
-import { prisma } from "../../prisma.js"
+import { prisma } from '../../prisma.js'
 
 //POST
 //api/exercise/log/:exerciseId
@@ -9,14 +9,14 @@ export const createNewExerciseLog = async (req, res, next) => {
 
     const exercise = await prisma.exercise.findUnique({
       where: {
-        id: exerciseId,
-      },
+        id: exerciseId
+      }
     })
 
     let timeDefault = []
 
     if (!exercise) {
-      throw new Error("нет такого упражнения")
+      throw new Error('нет такого упражнения')
     }
 
     for (let i = 0; i < exercise.times; i++) {
@@ -27,23 +27,23 @@ export const createNewExerciseLog = async (req, res, next) => {
       data: {
         user: {
           connect: {
-            id: req.user.id,
-          },
+            id: req.user.id
+          }
         },
         exercise: {
           connect: {
-            id: exerciseId,
-          },
+            id: exerciseId
+          }
         },
         times: {
           createMany: {
-            data: timeDefault,
-          },
-        },
+            data: timeDefault
+          }
+        }
       },
       include: {
-        times: true,
-      },
+        times: true
+      }
     })
 
     res.json(exersiceLog)

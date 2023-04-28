@@ -24,9 +24,9 @@ export function Profile() {
   }
 
   return (
-    <>
+    <div className={style.profile}>
       <h1 className={style.user}> {profile.data.name}</h1>
       <Counter />
-    </>
+    </div>
   )
 }

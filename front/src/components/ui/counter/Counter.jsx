@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import cn from 'classnames'
 import Cookies from 'js-cookie'
-import React, { useEffect, useState } from 'react'
 import { LineWave } from 'react-loader-spinner'
 
 import userService from '../../../services/user.service'

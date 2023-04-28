@@ -16,15 +16,14 @@ export function Header() {
   const navigate = useNavigate()
   const { title, bgImage } = useLayout()
 
-  console.log(bgImage)
-
   const { isAuth } = useAuth()
 
   return (
     <header
-      style={{ backgroundImage: `url(${bgImage})` }}
+      style={bgImage?{ backgroundImage: `url(${bgImage})` }:{}}
       className={cn(style.header, {
-        [style.auth]: location.pathname === '/auth'
+        [style.auth]: location.pathname === '/auth',
+        [style.bgImage]: bgImage
       })}>
       {location.pathname === '/' ? (
         <Link to='profile'>
@@ -39,7 +38,12 @@ export function Header() {
           alt='back icon'
         />
       ) : null}
-      <h1 className='title'>{title}</h1>
+      <h1
+        className={cn('title', {
+          left: location.pathname !== '/' && location.pathname !== '/profile' && location.pathname !== '/auth'
+        })}>
+        {title}
+      </h1>
 
       {isAuth && location.pathname !== '/auth' && <Hamburger />}
     </header>

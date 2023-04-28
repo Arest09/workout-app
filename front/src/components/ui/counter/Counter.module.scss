@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
+
+  & > li {
+    width: 93px;
+  }
 }
 
 .info {
