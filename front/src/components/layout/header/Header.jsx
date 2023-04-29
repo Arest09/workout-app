@@ -20,7 +20,7 @@ export function Header() {
 
   return (
     <header
-      style={bgImage?{ backgroundImage: `url(${bgImage})` }:{}}
+      style={bgImage ? { backgroundImage: `url(${bgImage})` } : {}}
       className={cn(style.header, {
         [style.auth]: location.pathname === '/auth',
         [style.bgImage]: bgImage
@@ -32,7 +32,7 @@ export function Header() {
       ) : location.pathname !== '/auth' ? (
         <img
           onClick={() => {
-            navigate('/')
+            navigate(-1)
           }}
           src={back}
           alt='back icon'

@@ -22,8 +22,7 @@ const styleBtn = {
 const icons = ['chest.svg', 'shoulders.svg', 'biceps.svg', 'legs.svg', 'hit.svg', 'back.svg']
 
 export function NewExericse() {
-  const { isLoading, error, isSuccess, name, setName, times, setTimes, setImage, hadnleSubmit } =
-    useNewExercise()
+  const { isLoading, error, isSuccess, name, setName, times, setTimes, setImage, hadnleSubmit } = useNewExercise()
 
   const errorInfo = error?.response?.data?.message
 

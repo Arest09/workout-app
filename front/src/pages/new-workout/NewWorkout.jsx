@@ -27,7 +27,6 @@ export function NewWorkout() {
 
   return (
     <>
-      {/* <h1 className='title'>{title}</h1> */}
       <form onSubmit={hadnleSubmit} className={style.form}>
         <Input
           style={inputStyle}
@@ -42,7 +41,9 @@ export function NewWorkout() {
           placeholder='выберите упражнения'
           options={options}
           isMulti
-          onChange={choice => setUserChoice(choice)}
+          onChange={choice => {
+            return setUserChoice(choice)
+          }}
           value={userChoice}
         />
         <Button disabled={isLoading} style={styleBtn}>

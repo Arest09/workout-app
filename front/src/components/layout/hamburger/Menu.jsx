@@ -1,3 +1,5 @@
+import HomeIcon from '@mui/icons-material/Home'
+import { List, ListItem, ListItemIcon } from '@mui/material'
 import cn from 'classnames'
 import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
@@ -20,23 +22,23 @@ export function Menu({ show, setShow }) {
       className={cn(style.menu, {
         [style.show]: show
       })}>
-      <ul>
+      <List>
         {menu.map((item, index) => {
           return (
-            <li
+            <ListItem
               className={style.link}
               key={index}
               onClick={() => {
                 setShow(false)
               }}>
               <Link to={item.link}>{item.title}</Link>
-            </li>
+            </ListItem>
           )
         })}
         <li className={style.link} onClick={logoutHandler}>
           logout
         </li>
-      </ul>
+      </List>
     </nav>
   )
 }

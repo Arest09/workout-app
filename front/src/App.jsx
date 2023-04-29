@@ -6,6 +6,8 @@ import { NewExericse } from './pages/new-exercise/NewExericse'
 import { NewWorkout } from './pages/new-workout/NewWorkout'
 import { NotFound } from './pages/notFound/NotFound'
 import { Profile } from './pages/profile/Profile'
+import { WorkoutLog } from './pages/workouts/WorkoutLog'
+import { WorkoutLogs } from './pages/workouts/WorkoutLogs'
 
 import { Layout } from './components/layout/Layout'
 
@@ -14,6 +16,13 @@ import { RequireAuth } from './hoc/RequireAuth'
 import { LayoutWrapper } from './context/LayoutWrapper'
 
 export function App() {
+
+  function workoutLogTitle(title) {
+    console.log(title)
+    return title
+  }
+  
+
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
@@ -39,7 +48,7 @@ export function App() {
           path='new-workout'
           element={
             <RequireAuth>
-              <LayoutWrapper height={'65%'} title={'create new workout'} bgImage={'/workout.jpg'}>
+              <LayoutWrapper height={'63%'} title={'create new workout'} bgImage={'/workout.jpg'}>
                 <NewWorkout />
               </LayoutWrapper>
             </RequireAuth>
@@ -56,16 +65,28 @@ export function App() {
           }
         />
 
-        <Route
-          path='workouts'
-          element={
-            <RequireAuth>
-              <LayoutWrapper height={'55%'} title={'workouts'}>
-                <NewWorkout />
-              </LayoutWrapper>
-            </RequireAuth>
-          }
-        />
+        <Route path='WorkoutLogs/'>
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <LayoutWrapper height={'90%'} title={'workouts'}>
+                  <WorkoutLogs />
+                </LayoutWrapper>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path=':id'
+            element={
+              <RequireAuth>
+                <LayoutWrapper title={workoutLogTitle()}>
+                  <WorkoutLog workoutLogTitle={workoutLogTitle} />
+                </LayoutWrapper>
+              </RequireAuth>
+            }
+          />
+        </Route>
         <Route
           path='profile'
           element={

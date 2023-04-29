@@ -8,8 +8,10 @@ export function useListExercises() {
       console.log(exercises?.data)
     },
     select: exercises => {
+      console.log(exercises.data)
       return exercises.data
     }
   })
+
   return { exercises }
 }
