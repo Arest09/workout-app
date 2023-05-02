@@ -21,11 +21,11 @@ export const createWorkout = async (req, res, next) => {
     })
 
     if (!name) {
-      throw  new Error('введите название тренировки')
+      throw new Error('введите название тренировки')
     }
 
     if (!exerciseId.length) {
-      throw  new Error('выберите упражнения')
+      throw new Error('выберите упражнения')
     }
 
     res.json(workout)

@@ -10,13 +10,28 @@ export const createNewworkoutLog = async (req, res, next) => {
 
     const workout = await prisma.workout.findUnique({
       where: {
-        id: workoutId,
+        id: workoutId
       },
 
       include: {
         exercises: true
       }
     })
+
+    const workoutExistLog = await prisma.workoutLog.findFirst({
+      where: {
+        workout: {
+          id: workoutId
+        }
+      }
+    })
+
+    if (workoutExistLog) {
+      res.json(workoutExistLog)
+      return
+    }
+
+    console.log(workoutExistLog)
 
     if (!workout) {
       res.status(404)

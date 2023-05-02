@@ -10,7 +10,7 @@ export const updateExerciseLogTime = async (req, res, next) => {
 
     const exerciseLogTime = await prisma.exerciseTime.findUnique({
       where: {
-        id: Number(req.params.id)      
+        id: Number(req.params.id)
       }
     })
 

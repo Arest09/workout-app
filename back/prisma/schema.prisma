@@ -23,6 +23,8 @@ model User {
 
   exerciseLogs ExerciseLog[]
   workoutLogs  WorkoutLog[]
+
+  exercises Exercise[]
 }
 
 model Workout {
@@ -47,6 +49,9 @@ model Exercise {
   workouts Workout[]
 
   exerciseLogs ExerciseLog[]
+
+  user User ? @relation(fields: [userId],references: [id])
+  userId Int @map("user_id")
 }
 
 model ExerciseLog {

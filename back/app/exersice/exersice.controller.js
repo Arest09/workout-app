@@ -11,7 +11,12 @@ export const createNewExersice = async (req, res, next) => {
       data: {
         name,
         times,
-        iconPath
+        iconPath,
+        user: {
+          connect: {
+            id: req.user.id
+          }
+        }
       }
     })
 
@@ -39,8 +44,8 @@ export const createNewExersice = async (req, res, next) => {
 export const getExersices = async (req, res, next) => {
   try {
     const exersices = await prisma.exercise.findMany({
-      where:{
-        
+      where: {
+        userId: req.user.id
       },
       orderBy: {
         createdAt: 'desc'

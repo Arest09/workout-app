@@ -3,11 +3,10 @@ import { prisma } from '../../prisma.js'
 import { CalcMinutes } from '../../utils/time.train.js'
 
 export const getOneWorkoutLog = async (req, res, next) => {
- 
   try {
     const workoutLog = await prisma.workoutLog.findFirst({
       where: {
-        AND:{id:Number(req.params.id),userId:req.user.id}
+        AND: { id: Number(req.params.id), userId: req.user.id }
       },
       include: {
         workout: {
@@ -44,11 +43,11 @@ export const getWorkoutLog = async (req, res, next) => {
   console.log(req.user.id)
   try {
     const workoutLog = await prisma.workoutLog.findMany({
-      where:{
-        userId:req.user.id
+      where: {
+        userId: req.user.id
       },
-      orderBy:{
-        id:'desc'
+      orderBy: {
+        id: 'desc'
       },
       include: {
         workout: {
