@@ -1,22 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 
-import workoutLogService from '../../services/workoutLog.service'
+import workoutLogService from '../../../services/workoutLog.service'
 
 export function useWorkoutLog(id) {
-  const { data, isLoading,isSuccess } = useQuery(
+  const { data, isLoading, isSuccess } = useQuery(
     ['workoutLog', id],
     () => {
       return workoutLogService.getWorkoutLog({ id })
     },
     {
-      onSuccess: data => {
-       
-      },
+      onSuccess: data => {},
       select: data => {
         return data.data
       }
     }
   )
 
-  return {data,isLoading,isSuccess}
+  return { data, isLoading, isSuccess }
 }

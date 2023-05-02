@@ -1,13 +1,14 @@
 import { Route, Routes } from 'react-router-dom'
 
 import { Auth } from './pages/auth/Auth'
+import { ExerciseLogs } from './pages/exerciseLog/ExerciseLogs'
 import { Home } from './pages/home/Home'
 import { NewExericse } from './pages/new-exercise/NewExericse'
 import { NewWorkout } from './pages/new-workout/NewWorkout'
 import { NotFound } from './pages/notFound/NotFound'
 import { Profile } from './pages/profile/Profile'
-import { WorkoutLog } from './pages/workouts/WorkoutLog'
-import { WorkoutLogs } from './pages/workouts/WorkoutLogs'
+import { WorkoutList } from './pages/workouts/WorkoutList'
+import { WorkoutLog } from './pages/workouts/wokoutLog/WorkoutLogList'
 
 import { Layout } from './components/layout/Layout'
 
@@ -16,12 +17,9 @@ import { RequireAuth } from './hoc/RequireAuth'
 import { LayoutWrapper } from './context/LayoutWrapper'
 
 export function App() {
-
   function workoutLogTitle(title) {
-    console.log(title)
     return title
   }
-  
 
   return (
     <Routes>
@@ -71,7 +69,7 @@ export function App() {
             element={
               <RequireAuth>
                 <LayoutWrapper height={'90%'} title={'workouts'}>
-                  <WorkoutLogs />
+                  <WorkoutList />
                 </LayoutWrapper>
               </RequireAuth>
             }
@@ -93,6 +91,16 @@ export function App() {
             <RequireAuth>
               <LayoutWrapper height={'50%'}>
                 <Profile />
+              </LayoutWrapper>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path='exercise/:id'
+          element={
+            <RequireAuth>
+              <LayoutWrapper height={'50%'}>
+                <ExerciseLogs />
               </LayoutWrapper>
             </RequireAuth>
           }

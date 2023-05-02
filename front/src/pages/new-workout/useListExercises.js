@@ -4,11 +4,8 @@ import exerciseService from '../../services/exercise.service'
 
 export function useListExercises() {
   const { data: exercises } = useQuery(['exercises', 'all'], exerciseService.getAllExercise, {
-    onSuccess: exercises => {
-      console.log(exercises?.data)
-    },
+    onSuccess: exercises => {},
     select: exercises => {
-      console.log(exercises.data)
       return exercises.data
     }
   })
