@@ -9,7 +9,13 @@ export const createWorkout = async (req, res, next) => {
   try {
     const { name, exerciseId } = req.body
 
-    console.log(exerciseId)
+    if (!name) {
+      throw new Error('введите название тренировки')
+    }
+
+    if (!exerciseId.length) {
+      throw new Error('выберите упражнения')
+    }
 
     const workout = await prisma.workout.create({
       data: {
@@ -19,14 +25,6 @@ export const createWorkout = async (req, res, next) => {
         }
       }
     })
-
-    if (!name) {
-      throw new Error('введите название тренировки')
-    }
-
-    if (!exerciseId.length) {
-      throw new Error('выберите упражнения')
-    }
 
     res.json(workout)
   } catch (error) {
