@@ -8,7 +8,7 @@ import { NewWorkout } from './pages/new-workout/NewWorkout'
 import { NotFound } from './pages/notFound/NotFound'
 import { Profile } from './pages/profile/Profile'
 import { WorkoutList } from './pages/workouts/WorkoutList'
-import { WorkoutLog } from './pages/workouts/wokoutLog/WorkoutLogList'
+import { WorkoutLogList } from './pages/workouts/wokoutLog/WorkoutLogList'
 
 import { Layout } from './components/layout/Layout'
 
@@ -79,7 +79,7 @@ export function App() {
             element={
               <RequireAuth>
                 <LayoutWrapper title={workoutLogTitle()}>
-                  <WorkoutLog workoutLogTitle={workoutLogTitle} />
+                  <WorkoutLogList workoutLogTitle={workoutLogTitle} />
                 </LayoutWrapper>
               </RequireAuth>
             }

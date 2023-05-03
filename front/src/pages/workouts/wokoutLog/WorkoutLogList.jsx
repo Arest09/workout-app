@@ -32,7 +32,7 @@ export function WorkoutLogList({ workoutLogTitle }) {
       </Box>
       <List>
         {data.exerciseLogs.map(item => {
-          return <WorkoutLogItem />
+          return <WorkoutLogItem key={item.id} item={item} />
         })}
       </List>
     </Container>

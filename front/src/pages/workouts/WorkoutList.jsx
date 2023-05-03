@@ -15,7 +15,7 @@ export function WorkoutList() {
   return (
     <List>
       {workout.map(item => {
-        return <WorkoutItem item={item} mutate={mutate} />
+        return <WorkoutItem key={item.id} item={item} mutate={mutate} />
       })}
     </List>
   )

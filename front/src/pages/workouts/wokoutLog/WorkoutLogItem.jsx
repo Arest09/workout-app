@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { iconPath } from '../../new-exercise/icon.path.utils'
 
-export function WorkoutLogItem() {
+export function WorkoutLogItem({ item }) {
   return (
     <Link to={`/exercise/${item.id}`} key={item.id}>
       <ListItem sx={{ backgroundColor: '#511734', borderRadius: '5px', marginBottom: '15px' }} key={item.id}>

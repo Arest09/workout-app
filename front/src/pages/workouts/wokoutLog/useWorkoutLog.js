@@ -9,7 +9,9 @@ export function useWorkoutLog(id) {
       return workoutLogService.getWorkoutLog({ id })
     },
     {
-      onSuccess: data => {},
+      onSuccess: data => {
+        console.log(data)
+      },
       select: data => {
         return data.data
       }
