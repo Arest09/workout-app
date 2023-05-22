@@ -6,12 +6,12 @@ import React from 'react'
 import { Head } from './Head'
 import { Row } from './Row'
 
-export function TableLog({ exerciseLog }) {
+export function TableLog({ props }) {
   return (
     <TableContainer component={Paper}>
       <Table>
         <Head />
-        <Row exerciseLog={exerciseLog} />
+        <Row {...props} />
       </Table>
     </TableContainer>
   )

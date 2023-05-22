@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import workoutLogService from '../../../services/workoutLog.service'
 
+
 export function useWorkoutLog(id) {
+
   const { data, isLoading, isSuccess } = useQuery(
     ['workoutLog', id],
     () => {
@@ -10,7 +12,7 @@ export function useWorkoutLog(id) {
     },
     {
       onSuccess: data => {
-        console.log(data)
+
       },
       select: data => {
         return data.data

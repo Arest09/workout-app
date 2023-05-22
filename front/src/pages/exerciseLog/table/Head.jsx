@@ -8,7 +8,7 @@ export function Head() {
     <TableHead>
       <TableRow>
         <TableCell>Previous</TableCell>
-        <TableCell>Repeat & weight</TableCell>
+        <TableCell>Weight & Repeat</TableCell>
         <TableCell>Completed</TableCell>
       </TableRow>
     </TableHead>

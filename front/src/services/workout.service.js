@@ -7,7 +7,7 @@ class workoutSevice {
       exerciseId: data.exerciseId
     })
 
-    console.log(data)
+
 
     return resp
   }

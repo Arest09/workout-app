@@ -3,8 +3,8 @@ import { LineWave } from 'react-loader-spinner'
 import { useParams } from 'react-router-dom'
 
 import { WorkoutLogItem } from './WorkoutLogItem'
-import { useWorkoutLog } from './useWorkoutLog'
-import { useWorkoutLogTitle } from './useWorkoutLogTitle'
+import { useWorkoutLog } from '../hooks/useWorkoutLog.js'
+import { useWorkoutLogTitle } from '../hooks/useWorkoutLogTitle.js'
 
 export function WorkoutLogList({ workoutLogTitle }) {
   const { id } = useParams()

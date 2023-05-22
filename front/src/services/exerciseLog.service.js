@@ -16,6 +16,15 @@ class exerciseLog {
   async createexerciseLog({ id }) {
     return await instance.post(`exercise/log/${id}`)
   }
+
+  async updateTime({timeId, body}) {
+    console.log(timeId,body)
+    return await instance.put(`exercise/log/time/${timeId}`, body)
+  }
+
+  async complete(id,body){
+    return await instance.patch(`exercise/log/${id}`,body)
+  }
 }
 
 export default new exerciseLog()

@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
-import workoutService from '../../services/workout.service'
-import workoutLogService from '../../services/workoutLog.service'
+import workoutService from '../../../services/workout.service'
+import workoutLogService from '../../../services/workoutLog.service'
 
 export function useWorkouts() {
   const navigate = useNavigate()

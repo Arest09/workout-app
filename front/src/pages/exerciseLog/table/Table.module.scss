@@ -5,3 +5,11 @@
     max-width: 35px;
     text-align: right;
 }
+
+.isCompleted{
+    text-decoration: line-through;
+     td div,input{
+        color: #B53471 !important;
+        font-style: italic;
+    }
+}

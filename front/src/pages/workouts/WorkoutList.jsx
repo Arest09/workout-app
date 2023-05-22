@@ -3,7 +3,7 @@ import React from 'react'
 import { LineWave } from 'react-loader-spinner'
 
 import { WorkoutItem } from './WorkoutItem'
-import { useWorkouts } from './useWorkouts'
+import { useWorkouts } from './hooks/useWorkouts.js'
 
 export function WorkoutList() {
   const { workout, isLoading, mutate } = useWorkouts()
