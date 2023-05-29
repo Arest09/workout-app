@@ -17,13 +17,12 @@ class exerciseLog {
     return await instance.post(`exercise/log/${id}`)
   }
 
-  async updateTime({timeId, body}) {
-    console.log(timeId,body)
+  async updateTime({ timeId, body }) {
     return await instance.put(`exercise/log/time/${timeId}`, body)
   }
 
-  async complete(id,body){
-    return await instance.patch(`exercise/log/${id}`,body)
+  async complete(id, body) {
+    return await instance.patch(`exercise/log/${id}`, body)
   }
 }
 

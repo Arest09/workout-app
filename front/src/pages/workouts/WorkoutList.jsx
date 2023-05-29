@@ -2,8 +2,9 @@ import { List } from '@mui/material'
 import React from 'react'
 import { LineWave } from 'react-loader-spinner'
 
-import { WorkoutItem } from './WorkoutItem'
 import { useWorkouts } from './hooks/useWorkouts.js'
+
+import { WorkoutItem } from './WorkoutItem'
 
 export function WorkoutList() {
   const { workout, isLoading, mutate } = useWorkouts()

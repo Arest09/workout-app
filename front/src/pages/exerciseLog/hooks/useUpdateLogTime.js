@@ -11,9 +11,9 @@ export function useUpdateLogTime() {
     isLoading,
     error,
     mutate: updateLogTime
-  } = useMutation(({ timeId, body }) => {
-    console.log(timeId,body)
-      return exerciseLogService.updateTime({timeId, body})
+  } = useMutation(
+    ({ timeId, body }) => {
+      return exerciseLogService.updateTime({ timeId, body })
     },
     {
       onSuccess: () => {

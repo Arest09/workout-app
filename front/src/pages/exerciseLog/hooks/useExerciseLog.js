@@ -11,15 +11,18 @@ export function useExerciseLog() {
   const { error, updateLogTime } = useUpdateLogTime()
 
   const { id } = useParams()
-  const { data: exerciseLog, isLoading } = useQuery(
+  const {
+    data: exerciseLog,
+    isLoading,
+    isSuccess
+  } = useQuery(
     ['exerciseLog', id],
     () => {
       return exerciseLogService.getexerciseLog({ id })
     },
     {
       onSuccess: data => {
-        console.log(data)
-        data?.times?.length ? setTimes(data.times) : " "
+        data?.times?.length ? setTimes(data.times) : ' '
       },
       select: exerciseLog => {
         return exerciseLog.data
@@ -35,8 +38,6 @@ export function useExerciseLog() {
 
       return time
     })
-
-    console.log(newTimes)
 
     setTimes(newTimes)
   }
@@ -63,5 +64,5 @@ export function useExerciseLog() {
     })
   }
 
-  return { exerciseLog, isLoading, times, setTimes, onChangeState, getTime, getState, toggleTime }
+  return { exerciseLog, isLoading, times, setTimes, onChangeState, getTime, getState, toggleTime, isSuccess }
 }

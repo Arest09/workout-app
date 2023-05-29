@@ -2,9 +2,10 @@ import { Box, Container, List, Typography } from '@mui/material'
 import { LineWave } from 'react-loader-spinner'
 import { useParams } from 'react-router-dom'
 
-import { WorkoutLogItem } from './WorkoutLogItem'
 import { useWorkoutLog } from '../hooks/useWorkoutLog.js'
 import { useWorkoutLogTitle } from '../hooks/useWorkoutLogTitle.js'
+
+import { WorkoutLogItem } from './WorkoutLogItem'
 
 export function WorkoutLogList({ workoutLogTitle }) {
   const { id } = useParams()

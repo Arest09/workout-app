@@ -7,8 +7,6 @@ class workoutSevice {
       exerciseId: data.exerciseId
     })
 
-
-
     return resp
   }
   async getAllworkout() {

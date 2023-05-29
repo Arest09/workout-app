@@ -2,7 +2,7 @@ import { Box, Checkbox, Slider, TableRow } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import cn from 'classnames'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import style from './Table.module.scss'
 
@@ -47,11 +47,7 @@ export function Row({ exerciseLog, onChangeTime, onChangeState, getState, toggle
             </Box>
           </TableCell>
           <TableCell>
-            <Box
-              sx={{ maxWidth: '10px' }}
-              onClick={({ target }) => {
-                console.log(target)
-              }}>
+            <Box sx={{ maxWidth: '10px' }}>
               <Checkbox
                 size='small'
                 checked={getState(row.id, 'isCompleted')}
