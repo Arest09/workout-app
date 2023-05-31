@@ -70,7 +70,7 @@ export const register = async (req, res, next) => {
 
     let token = generateToken(user.id)
 
-    res.json({ user, token })
+    res.json({ user, token,message:"you successfuly registrated" })
   } catch (error) {
     next(error)
   }

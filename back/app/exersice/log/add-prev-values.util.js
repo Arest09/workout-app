@@ -1,4 +1,5 @@
 export const addPrevValues = (log, prevLog = null) => {
+console.log(prevLog,'addPrev')
   return log.times.map((item, index) => {
     return {
       ...item,

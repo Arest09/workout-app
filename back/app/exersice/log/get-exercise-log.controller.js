@@ -17,6 +17,7 @@ export const getOneExerciseLog = async (req, res, next) => {
       }
     })
 
+
     if (!exerciseLog) {
       res.status(404)
       throw new Error('нет логов')
@@ -30,10 +31,17 @@ export const getOneExerciseLog = async (req, res, next) => {
         exerciseId: exerciseLog.exerciseId,
         isCompleted: true,
         userId: req.user.id
+      },
+      include:{
+        times:true
       }
     })
 
+    console.log(prevExerciseLog,"prev")
+
     const newTimes = addPrevValues(exerciseLog, prevExerciseLog)
+
+    console.log(newTimes,'wew')
 
     res.json({ ...exerciseLog, times: newTimes })
   } catch (error) {

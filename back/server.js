@@ -17,7 +17,7 @@ dotenv.config()
 
 const app = express()
 
-app.use(cors({ origin: 'http://localhost:5173' }))
+app.use(cors({ origin: '*' }))
 
 const port = process.env.PORT
 app.listen(port || 5000, () => {
