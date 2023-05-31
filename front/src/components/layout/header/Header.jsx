@@ -22,14 +22,14 @@ export function Header() {
     <header
       style={bgImage ? { backgroundImage: `url(${bgImage})` } : {}}
       className={cn(style.header, {
-        [style.auth]: location.pathname === '/auth',
+        [style.auth]: location.pathname.includes('/auth'),
         [style.bgImage]: bgImage
       })}>
       {location.pathname === '/' ? (
         <Link to='profile'>
           <img src={user} alt='user icon' />
         </Link>
-      ) : location.pathname !== '/auth' ? (
+      ) : !location.pathname.includes('/auth') ? (
         <img
           onClick={() => {
             navigate(-1)
@@ -40,7 +40,7 @@ export function Header() {
       ) : null}
       <h1
         className={cn('title', {
-          left: location.pathname !== '/' && location.pathname !== '/profile' && location.pathname !== '/auth'
+          left: location.pathname !== '/' && location.pathname !== '/profile' && !location.pathname.includes('/auth')
         })}>
         {title}
       </h1>

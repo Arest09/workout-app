@@ -1,12 +1,13 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import exerciseLogService from '../../../services/exerciseLog.service'
+import exerciseLogService from '../../../services/exerciseLog/exerciseLog.service'
 
 import { useUpdateLogTime } from './useUpdateLogTime'
 
 export function useExerciseLog() {
+  const queryClient = useQueryClient()
   const [times, setTimes] = useState([])
   const { error, updateLogTime } = useUpdateLogTime()
 

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-import exerciseLogService from '../../../services/exerciseLog.service'
+import exerciseLogService from '../../../services/exerciseLog/exerciseLog.service'
 
 export function useUpdateLogTime() {
   const queryClient = useQueryClient()

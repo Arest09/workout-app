@@ -1,4 +1,4 @@
-import { instance } from '../api'
+import { instance } from '../../api'
 
 class exerciseLog {
   async getexerciseLog({ id }) {
@@ -21,8 +21,11 @@ class exerciseLog {
     return await instance.put(`exercise/log/time/${timeId}`, body)
   }
 
-  async complete(id, body) {
-    return await instance.patch(`exercise/log/${id}`, body)
+  async complete({ id, isCompleted }) {
+    console.log(id, isCompleted)
+    return await instance.patch(`exercise/log/complete/${id}`, {
+      isCompleted
+    })
   }
 }
 

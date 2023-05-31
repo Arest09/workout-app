@@ -18,13 +18,20 @@ export function ExerciseLogs() {
     return <LineWave height='100' visible={true} />
   }
 
+  if (isSuccess) {
+  
+  }
+
   return (
     <Container>
       <Typography letterSpacing={2} sx={{ marginBottom: '10px', textTransform: 'uppercase' }}>
-        {exerciseLog.exercise.name}
+        {exerciseLog?.exercise.name}
       </Typography>
       <TableLog props={{ exerciseLog, onChangeState, getState, toggleTime }} />
       <Button
+        onClick={() => {
+          completeLog({isCompleted: true })
+        }}
         disabled={!checkCompleted(exerciseLog?.times)}
         sx={{
           width: '100%',

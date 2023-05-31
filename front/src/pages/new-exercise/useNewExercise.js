@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 
-import exerciseService from '../../services/exercise.service'
+import exerciseService from '../../services/exercise/exercise.service'
 
 import { useLayout } from '../../context/LayoutContext'
 

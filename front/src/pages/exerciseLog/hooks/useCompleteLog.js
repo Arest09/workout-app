@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-import exerciseLogService from '../../../services/exerciseLog.service'
+import exerciseLogService from '../../../services/exerciseLog/exerciseLog.service'
 
 export function useCompleteLog() {
   const queryClient = useQueryClient()
@@ -12,11 +12,12 @@ export function useCompleteLog() {
     error,
     mutate: completeLog
   } = useMutation(
-    () => {
-      return exerciseLogService.complete({ id, body })
+    ({ isCompleted }) => {
+      return exerciseLogService.complete({id, isCompleted})
     },
     {
       onSuccess: () => {
+        console.log("ss")
         queryClient.invalidateQueries(['exerciseLog', id])
       }
     }

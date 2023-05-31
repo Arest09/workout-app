@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
 import { Auth } from './pages/auth/Auth'
+import { Register } from './pages/auth/Register'
 import { ExerciseLogs } from './pages/exerciseLog/ExerciseLogs'
 import { Home } from './pages/home/Home'
 import { NewExericse } from './pages/new-exercise/NewExericse'
@@ -34,14 +35,24 @@ export function App() {
             </LayoutWrapper>
           }
         />
-        <Route
-          path='auth'
-          element={
-            <LayoutWrapper height={'55%'} title={'sign in'}>
-              <Auth />
-            </LayoutWrapper>
-          }
-        />
+        <Route path='auth/'>
+          <Route
+            index
+            element={
+              <LayoutWrapper height={'55%'} title={'sign in'}>
+                <Auth />
+              </LayoutWrapper>
+            }
+          />
+          <Route
+            path='register'
+            element={
+              <LayoutWrapper height={'55%'} title={'register'}>
+                <Register />
+              </LayoutWrapper>
+            }
+          />
+        </Route>
         <Route
           path='new-workout'
           element={
