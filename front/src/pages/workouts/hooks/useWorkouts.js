@@ -7,7 +7,9 @@ import workoutLogService from '../../../services/workoutLog/workoutLog.service'
 export function useWorkouts() {
   const navigate = useNavigate()
   const { data: workout, isLoading } = useQuery(['workoutLogs'], workoutService.getAllworkout, {
-    onSuccess: data => {},
+    onSuccess: data => {
+      console.log(data)
+    },
     select: data => {
       return data.data
     }
@@ -26,6 +28,6 @@ export function useWorkouts() {
     workout,
     isLoading,
     mutate,
-    workoutLog
+    workoutLog,
   }
 }

@@ -1,20 +1,28 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 import workoutLogService from '../../../services/workoutLog/workoutLog.service'
 
-export function useWorkoutLog(id) {
+export function useWorkoutLog() {
+  const { id } = useParams()
   const { data, isLoading, isSuccess } = useQuery(
     ['workoutLog', id],
     () => {
       return workoutLogService.getWorkoutLog({ id })
     },
     {
-      onSuccess: data => {},
+      onSuccess: data => {
+        console.log(data)
+      },
       select: data => {
         return data.data
       }
     }
   )
 
-  return { data, isLoading, isSuccess }
+  const { mutate } = useMutation(({ id, isCompleted }) => {
+    return workoutLogService.completeWorkoutLog({ id, isCompleted })
+  })
+
+  return { data, isLoading, isSuccess, mutate }
 }

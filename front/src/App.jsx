@@ -16,6 +16,7 @@ import { Layout } from './components/layout/Layout'
 import { RequireAuth } from './hoc/RequireAuth'
 
 import { LayoutWrapper } from './context/LayoutWrapper'
+import { WorkoutLogProvider } from './pages/workouts/wokoutLog/context/WorkoutLogContext'
 
 export function App() {
   function workoutLogTitle(title) {
@@ -111,7 +112,9 @@ export function App() {
           element={
             <RequireAuth>
               <LayoutWrapper height={'50%'}>
-                <ExerciseLogs />
+                <WorkoutLogProvider>
+                  <ExerciseLogs />
+                </WorkoutLogProvider>
               </LayoutWrapper>
             </RequireAuth>
           }

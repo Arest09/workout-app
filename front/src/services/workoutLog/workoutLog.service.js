@@ -14,8 +14,14 @@ class WorkoutLog {
   }
 
   async createWorkoutLog({ id }) {
-    console.log({ id })
     return await instance.post(`workout/log/${id}`)
+  }
+
+  async completeWorkoutLog({ id, isCompleted }) {
+    console.log(id, isCompleted)
+    return await instance.patch(`/workout/log/complete/${id}`, {
+      isCompleted
+    })
   }
 }
 

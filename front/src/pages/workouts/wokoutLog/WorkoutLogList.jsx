@@ -1,18 +1,20 @@
-import { Box, Container, List, Typography } from '@mui/material'
+import { Box, Button, Container, List, Typography } from '@mui/material'
 import { LineWave } from 'react-loader-spinner'
 import { useParams } from 'react-router-dom'
 
 import { useWorkoutLog } from '../hooks/useWorkoutLog.js'
 import { useWorkoutLogTitle } from '../hooks/useWorkoutLogTitle.js'
 
+import { checkCompleted } from '../../exerciseLog/helper/checkCompleted.js'
+
 import { WorkoutLogItem } from './WorkoutLogItem'
 
 export function WorkoutLogList({ workoutLogTitle }) {
   const { id } = useParams()
 
-  const { data, isLoading } = useWorkoutLog(id)
+  const { data, isLoading, mutate } = useWorkoutLog()
 
-  const { title } = useWorkoutLogTitle(id)
+  const { title } = useWorkoutLogTitle()
 
   if (title) {
     workoutLogTitle(title)
@@ -21,6 +23,7 @@ export function WorkoutLogList({ workoutLogTitle }) {
   if (isLoading) {
     return <LineWave height='100' visible={true} />
   }
+
 
   return (
     <Container>
@@ -36,6 +39,22 @@ export function WorkoutLogList({ workoutLogTitle }) {
           return <WorkoutLogItem key={item.id} item={item} />
         })}
       </List>
+      <Button
+        onClick={() => {
+          mutate({ id, isCompleted: true })
+        }}
+        disabled={!checkCompleted(data.exerciseLogs)}
+        sx={{
+          width: '100%',
+          marginTop: '10px',
+          backgroundColor: '#B53471',
+          color: 'black',
+          ':hover': {
+            backgroundColor: '#B53471'
+          }
+        }}>
+        Завершить тренировку
+      </Button>
     </Container>
   )
 }
